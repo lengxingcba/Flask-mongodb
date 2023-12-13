@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+    <a href="{{url_for('post',post_id=post['post_id'])}}">
+        <h2>{{ post['title'] }}</h2>
+    </a>
+    <span class="badge badge-primary">{{ post['post_time'] }}</span>
+    <hr>
+    {% endfor %}
+{% endblock %}

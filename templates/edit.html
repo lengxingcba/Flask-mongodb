@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block self %} 编辑文章：{{ post['title'] }} {% endblock %}</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="self">标题</label>
+        <input type="text" name="title" placeholder="标题" class="form-control"
+            value="{{ request.form['self'] or post['title'] }}">
+        </input>
+                <input type="hidden" name="post_id" class="form-control"
+            value="{{ post['post_id'] }}">
+        </input>
+                <select name="selectList" class="form-control">
+         <option>失物招领</option>
+         <option>二手交易</option>
+         <option>兼职</option>
+         <option>分享</option>
+         <option>租房</option>
+         <option>租房</option>
+         <option>询问</option>
+
+      </select>
+    </div>
+
+    <div class="form-group">
+        <label for="content">内容</label>
+        <textarea name="content" placeholder="Post content"
+            class="form-control">{{ request.form['内容'] or post['content'] }}</textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">提交</button>
+    </div>
+</form>
+<hr>
+{% endblock %}

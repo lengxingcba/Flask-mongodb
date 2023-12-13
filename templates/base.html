@@ -1,0 +1,92 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block self %} {% endblock %}</title>
+  </head>
+<style>
+ .base_background {
+    background-image: linear-gradient(to bottom right, #9b59b6, #3498db);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+}
+
+</style>
+
+<body class="base_background">
+    <nav>
+        <ul>
+            <li>
+                <a  href="{{ url_for('user_center',name=username)}}">{{username}}</a>
+            </li>
+            <li>
+                <a  href="{{ url_for('index',name='all')}}">MrFreeGiving的信息平台</a>
+            </li>
+            <li>
+                <a href="{{ url_for('new')}}">发布文章</a>
+            </li>
+            <li>
+                <a href="{{ url_for('index',name='失物招领')}}">失物招领</a>
+            </li>
+            <li>
+                <a  href="{{ url_for('index',name='二手交易')}}">二手交易</a>
+            </li>
+            <li>
+                <a  href="{{ url_for('index',name='分享')}}">分享</a>
+            </li>
+            <li>
+                <a  href="{{ url_for('index',name='兼职')}}">兼职</a>
+            </li>
+            <li>
+                <a  href="{{ url_for('index',name='租房')}}">租房</a>
+            </li>
+            <li>
+                <a href="{{ url_for('index',name='询问')}}">询问</a>
+            </li>
+            <li>
+                <a href="#">关于</a>
+            </li>
+        </ul>
+    </nav>
+    <div>
+        {% for message in get_flashed_messages() %}
+        <div id="flash-messages">{{ message }}</div>
+        {% endfor %}
+        {% block content %} {% endblock %}
+    </div>
+    <script>
+        // 3秒后自动隐藏闪现消息
+        setTimeout(function() {
+            var flashMessages = document.getElementById('flash-messages');
+            if (flashMessages) {
+                flashMessages.innerHTML = ''; // 清空消息元素
+                flashMessages.style.display="none";
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

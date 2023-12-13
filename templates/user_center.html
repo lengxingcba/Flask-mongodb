@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <span class="post-title">我的帖子</span>
+    </div>
+    {% for post in posts %}
+<div class="post-container">
+    <a href="{{url_for('post',post_id=post['post_id'])}}" class="post-link">
+        <h2 class="post-title">{{ post['title'] }}</h2>
+        <p class="post-content">{{ post['content'] }}</p>
+        <span class="badge badge-primary post-time">{{ post['post_time'] }}</span>
+    </a>
+    <form action="{{ url_for('delete', post_id=post['post_id']) }}" method="POST" class="delete-form">
+        <input type="submit" value="删除" class="btn btn-danger btn-sm delete-button"
+            onclick="return confirm('确定要删除吗?')">
+    </form>
+</div>
+<hr class="post-separator">
+
+    {% endfor %}
+    <form action="{{ url_for('logout', username=username) }}" method="POST">
+    <input type="submit" value="退出登录" class="btn btn-danger btn-sm"
+        onclick="return confirm('确认退出?')">
+</form>
+{% endblock %}
